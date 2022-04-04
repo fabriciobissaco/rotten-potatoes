@@ -26,7 +26,7 @@ jobs:
           context: ./src
           file: ./src/Dockerfile
           push: true
-          tags: 
+          tags:
             fabriciobissaco/rotten-potatoes:latest
             fabriciobissaco/rotten-potatoes:${{ github.run_number }}
             
@@ -49,7 +49,3 @@ jobs:
           images: fabriciobissaco/rotten-potatoes:latest
           manifests: 
             k8s/deployments.yaml
-          
-      
-      
- 
