@@ -28,6 +28,7 @@ jobs:
           push: true
           tags: 
             fabriciobissaco/rotten-potatoes:latest
+            fabriciobissaco/rotten-potatoes:${{ github.run_number }}
             
   CD:
     needs: [CI]
