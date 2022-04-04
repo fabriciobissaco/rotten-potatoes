@@ -1,4 +1,4 @@
-name: CI-CD
+name: CI
 on:
   push:
     branches: [ main ]
@@ -21,7 +21,7 @@ jobs:
           context: ./src
           file: ./src/Dockerfile
           push: true
-          tags: |
+          tags:
             fabriciobissaco/rotten-potatoes:latest
             fabriciobissaco/rotten-potatoes:${{github.run_number}}
             
@@ -31,15 +31,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
   
-      - name: Kubernetes set context
-        uses: Azure/k8s-set-context@v1
-        with:
-          method: kubeconfig
-          kubeconfig: ${{secrets.K8S_CONFIG}}
-          
-      - name: Deploy Aplicação
-        uses: Azure/k8s-deploy@v1.3
-        with:
-          images: fabriciobissaco/rotten-potatoes:${{github.run_number}}
-          manifests: |
-            k8s/deployment.yaml
+- name: Azure Kubernetes set context
+  uses: Azure/aks-set-context@v2.1
+  with:
+    # Resource Group Name
+    resource-group: Fabricio_Tests
+    # AKS Cluster Name
+    cluster-name: Iniciativa_Kubernetes
+    # AKS Cluster Subscription
+    subscription: # optional
+    # Get cluster admin credentials. Values: true or false
+    admin: # optional
